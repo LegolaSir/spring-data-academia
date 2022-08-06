@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class AlunoController {
     private AlunoService service;
 
     @PostMapping("/create")
-    public ResponseEntity create(@RequestBody AlunoForm form){
+    public ResponseEntity create(@Valid @RequestBody AlunoForm form){
         StringBuilder message = new StringBuilder();
 
         service.insert(form);
