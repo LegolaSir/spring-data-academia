@@ -38,7 +38,7 @@ public class ExameService implements IExameService {
     }
 
     @Override
-    public Exame getById(Long id) {
-        return null;
+    public List<Exame> getByAlunoId(Long id) {
+        return exameRepository.findByAluno(id);
     }
 }

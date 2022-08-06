@@ -29,7 +29,7 @@ public class ExameController {
                     .append(" FROM tb_alunos");
 
         } catch(Exception e){
-            message.append("FAILED TO CREATE EXAM REGISTRY");
+            message.append("FAILED TO CREATE 'EXAME' REGISTRY INTO DATABASE");
         }
 
         return ResponseEntity.ok().body(message);
@@ -38,5 +38,22 @@ public class ExameController {
     @GetMapping("/list")
     public ResponseEntity<List<Exame>> listDB(){
         return ResponseEntity.ok().body(service.getAll());
+    }
+
+    @GetMapping("/aluno/{id}")
+    public ResponseEntity getRegistryByAlunoId(@PathVariable Long id){
+
+        try {
+            return ResponseEntity.ok().body(service.getByAlunoId(id));
+
+        } catch (Exception e){
+            StringBuilder message = new StringBuilder();
+
+            message.append("ID: [")
+                    .append(id)
+                    .append("] NOT FOUND IN DATABASE");
+
+            return ResponseEntity.badRequest().body(message);
+        }
     }
 }

@@ -21,11 +21,18 @@ public class AlunoController {
     public ResponseEntity create(@Valid @RequestBody AlunoForm form){
         StringBuilder message = new StringBuilder();
 
-        service.insert(form);
+        try{
+            service.insert(form);
 
-        message.append("ITEM: ")
-                .append(form.getNome())
-                .append(" INSERTED INTO DATABASE");
+            message.append("ITEM: ")
+                    .append(form.getNome())
+                    .append(" INSERTED INTO DATABASE");
+
+        } catch (Exception e){
+            message.append("FAILED TO CREATE 'ALUNO' REGISTRY [")
+                    .append(form.getNome())
+                    .append("] INTO DATABASE");
+        }
 
         return ResponseEntity.ok().body(message);
     }

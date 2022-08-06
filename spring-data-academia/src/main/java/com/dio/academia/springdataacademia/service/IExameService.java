@@ -13,5 +13,5 @@ public interface IExameService {
 
     List<Exame> getAll();
 
-    Exame getById(Long id);
+    List<Exame> getByAlunoId(Long id);
 }
