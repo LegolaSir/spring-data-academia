@@ -21,6 +21,7 @@ public class AlunoForm {
     private String nome;
 
     @NotEmpty(message = "Column [cpf] may not be empty")
+    @Size(max = 14)
 //    @CPF
     private String cpf;
 
