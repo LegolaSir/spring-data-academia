@@ -34,6 +34,6 @@ public class AlunoService implements IAlunoService {
 
     @Override
     public Aluno getById(Long id) {
-        return null;
+        return repository.findById(id).get();
     }
 }
