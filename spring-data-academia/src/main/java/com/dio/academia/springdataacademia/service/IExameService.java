@@ -14,4 +14,8 @@ public interface IExameService {
     List<Exame> getAll();
 
     List<Exame> getByAlunoId(Long id);
+
+    void update(Long id, Double peso, Double altura);
+
+    void updateRelatedAluno(Long id, Long idAluno);
 }
