@@ -2,6 +2,7 @@ package com.dio.academia.springdataacademia.service.impl;
 
 import com.dio.academia.springdataacademia.entity.Aluno;
 import com.dio.academia.springdataacademia.entity.form.AlunoForm;
+import com.dio.academia.springdataacademia.exception.AlunoNotFoundInDBException;
 import com.dio.academia.springdataacademia.repository.AlunoRepository;
 import com.dio.academia.springdataacademia.service.IAlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class AlunoService implements IAlunoService {
 
     @Override
     public Aluno getById(Long id) {
+        if(!repository.findById(id).isPresent()) throw new AlunoNotFoundInDBException();
+
         return repository.findById(id).get();
     }
 }

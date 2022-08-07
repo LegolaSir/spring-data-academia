@@ -53,12 +53,12 @@ public class ExameController {
         try {
             return ResponseEntity.ok().body(service.getByAlunoId(id));
 
-        } catch (Exception e){
+        } catch (AlunoNotFoundInDBException e){
             StringBuilder message = new StringBuilder();
 
             message.append("ID: [")
                     .append(id)
-                    .append("] NOT FOUND IN DATABASE");
+                    .append("] NOT FOUND IN DATABASE tb_alunos");
 
             return ResponseEntity.badRequest().body(message);
         }

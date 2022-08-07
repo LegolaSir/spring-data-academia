@@ -42,6 +42,8 @@ public class ExameService implements IExameService {
 
     @Override
     public List<Exame> getByAlunoId(Long id) {
+        if(!alunoRepository.findById(id).isPresent()) throw new AlunoNotFoundInDBException();
+
         return exameRepository.findByAluno(id);
     }
 

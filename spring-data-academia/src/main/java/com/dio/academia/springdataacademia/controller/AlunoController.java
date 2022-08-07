@@ -2,6 +2,7 @@ package com.dio.academia.springdataacademia.controller;
 
 import com.dio.academia.springdataacademia.entity.Aluno;
 import com.dio.academia.springdataacademia.entity.form.AlunoForm;
+import com.dio.academia.springdataacademia.exception.AlunoNotFoundInDBException;
 import com.dio.academia.springdataacademia.service.impl.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,20 @@ public class AlunoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Aluno> getRegistry(@PathVariable Long id){
-        return ResponseEntity.ok().body(service.getById(id));
+    public ResponseEntity getRegistry(@PathVariable Long id){
+        StringBuilder message = new StringBuilder();
+
+        try
+        {
+            return ResponseEntity.ok().body(service.getById(id));
+        }
+        catch (AlunoNotFoundInDBException e)
+        {
+            message.append("ID: [")
+                    .append(id)
+                    .append("] NOT FOUND IN DATABASE tb_alunos");
+
+            return ResponseEntity.badRequest().body(message);
+        }
     }
 }
