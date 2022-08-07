@@ -96,7 +96,7 @@ public class ExameController {
         return ResponseEntity.badRequest().body(message);
     }
 
-    @PostMapping("/update/aluno/{id}")
+    @PostMapping("/update/{id}/aluno/")
     public ResponseEntity updateRelatedAluno(@PathVariable Long id,
                                              @RequestParam(value = "idAluno") Long idAluno)
     {
